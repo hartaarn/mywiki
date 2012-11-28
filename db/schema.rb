@@ -11,7 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121127225805) do
+ActiveRecord::Schema.define(:version => 20121128214834) do
+
+  create_table "contents", :force => true do |t|
+    t.text     "body"
+    t.integer  "page_id"
+    t.integer  "created_by"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "title"
+    t.integer  "created_by"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tag_mappings", :force => true do |t|
+    t.integer  "page_id"
+    t.integer  "tag_id"
+    t.integer  "created_by"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tags", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
