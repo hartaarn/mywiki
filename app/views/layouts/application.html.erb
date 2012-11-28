@@ -17,6 +17,14 @@
  <%= link_to "Login", new_user_session_path %>
 <% end %>
 
+<% flash.each do |key,value| %>
+  <% alert_type = (key == :success ? 'success' : 'error') %>
+  <div class="alert alert-#{alert_type}">
+    <a class="close" data-dismiss="alert">x</a>
+    <%= content_tag :span, value %>
+  </div> 
+<% end %>
+
 <%= yield %>
 
 </body>

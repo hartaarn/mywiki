@@ -1,6 +1,8 @@
 Mywiki::Application.routes.draw do
   devise_for :users
 
+  resources :pages
+
   root :to => 'wiki#index'
 
   # The priority is based upon order of creation:
