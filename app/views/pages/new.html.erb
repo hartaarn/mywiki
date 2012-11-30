@@ -1,9 +1,9 @@
-<h3>New Page</h3>
+<h3>New Wiki</h3>
 
 <%= form_for @page do |f| %>
   <%= f.label :title, 'Title' %>
   <%= f.text_field :title %><br />
-  <%= f.label :body, 'Page Content' %>
+  <%= f.label :body, 'Wiki Content' %>
   <%= f.text_area :body %><br />
-  <%= f.submit %>
+  <%= f.submit 'Create Wiki Page' %>
 <% end %>
