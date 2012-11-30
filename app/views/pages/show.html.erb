@@ -1,0 +1,5 @@
+<h3><%= @page.title %></h3>
+
+<p><%= @page.current_body %></p>
+
+<%= link_to 'Delete', page_url(@page), method: :delete, class: 'btn btn-danger' %>

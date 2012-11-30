@@ -7,4 +7,9 @@ class Page < ActiveRecord::Base
   has_many :tags, through: :tag_mappings
 
   validates :title, presence: true
+
+  def current_body
+    contents.order('created_at  desc').limit(1).first.body
+  end
+
 end

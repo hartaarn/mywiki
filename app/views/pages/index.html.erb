@@ -1,3 +1,7 @@
 <h3>Wiki Pages</h3>
 
+<% @pages.each do |page| %>
+  <%= link_to page.title, page_url(page) %><br />
+<% end %>
+
 <%= link_to 'Create new Wiki page', new_page_url %>

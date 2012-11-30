@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
+  before_filter :authenticate_user!
   def index
+    @pages = current_user.pages
   end
 
   def create
@@ -8,6 +10,7 @@ class PagesController < ApplicationController
     @page.created_by = current_user.id
 
     if @page.save
+      @page.contents.create! body: params[:page][:body]
       flash[:success] = 'Page created'
       redirect_to pages_url
     else
@@ -18,8 +21,17 @@ class PagesController < ApplicationController
 
   def new
     @page = Page.new
-
   end
 
+  def show
+    @page = current_user.pages.where(id: params[:id]).first
+  end
+
+  def destroy
+    @page = current_user.pages.where(id: params[:id]).first
+    @page.destroy
+    flash[:success] = 'Page created'
+    redirect_to pages_url
+  end
 
 end
