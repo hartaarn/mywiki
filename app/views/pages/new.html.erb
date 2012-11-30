@@ -1,9 +1,11 @@
 <h3>New Wiki</h3>
 
 <%= form_for @page do |f| %>
-  <%= f.label :title, 'Title' %>
+  
+  Title
   <%= f.text_field :title %><br />
-  <%= f.label :body, 'Wiki Content' %>
+  
+  Wiki Content
   <%= f.textile_editor :body %><br />
   <%= f.submit 'Create Wiki Page' %>
 <% end %>

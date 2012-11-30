@@ -5,3 +5,8 @@
 .textile_editor {
   width: 100%
 }
+
+.validation-error {
+  color: #880000;
+  input{border-color: #880000;}
+}
