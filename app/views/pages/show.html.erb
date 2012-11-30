@@ -1,5 +1,5 @@
 <h3><%= @page.title %></h3>
 
-<p><%= @page.current_body %></p>
+<%= textilize(@page.current_body).html_safe %>
 
 <%= link_to 'Delete', page_url(@page), method: :delete, class: 'btn btn-danger' %>
