@@ -8,8 +8,23 @@ class Page < ActiveRecord::Base
 
   validates :title, presence: true
 
+  after_initialize :init
+
   def current_body
     contents.order('created_at  desc').limit(1).first.body
+  end
+
+  def init
+  	self.body ||= "
+h2. Setup Steps
+
+<enter some steps required to do this>
+
+
+h2. Test Strategies
+
+<thoughts completed to get this done>"
+  
   end
 
 end

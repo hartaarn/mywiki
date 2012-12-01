@@ -15,7 +15,9 @@
       <% flash.each do |key,value| %>
         <% alert_type = (key == :success ? 'success' : 'error') %>
         <br>
-        <div class="alert alert-#{alert_type}">
+        <div class="
+        <%= "alert alert-#{alert_type}" %> 
+        ">
           <a class="close" data-dismiss="alert">x</a>
           <%= content_tag :span, value %>
         </div>
