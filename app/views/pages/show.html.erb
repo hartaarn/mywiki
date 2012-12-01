@@ -1,5 +1,11 @@
+<br><br>
+<div class="pull-right">
+	<%= link_to 'Delete', page_url(@page), confirm: "Are you sure?", method: :delete, class: 'btn btn-mini btn-danger' %> |
+	<%= link_to 'Home', pages_url, class: 'btn btn-mini' %>
+</div>
+
 <h3><%= @page.title %></h3>
+<hr>
 
 <%= textilize(@page.current_body).html_safe %>
 
-<%= link_to 'Delete', page_url(@page), method: :delete, class: 'btn btn-danger' %>

@@ -1,13 +1,19 @@
+<br>
+<div class="pull-right">
+	<%= link_to 'Home', pages_url, class: 'btn btn-mini' %>
+</div>
+<br><br>
+
 <h3>New Wiki</h3>
 
 <%= form_for @page do |f| %>
   
-  Title
+  Title:<br>
   <%= f.text_field :title %><br />
   
-  Wiki Content
+  Wiki Content:
   <%= f.textile_editor :body %><br />
-  <%= f.submit 'Create Wiki Page' %>
+  <%= f.submit 'Create Wiki Page', class: 'btn btn-success' %>
 <% end %>
 
 <%= textile_editor_initialize %>

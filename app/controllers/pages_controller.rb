@@ -30,7 +30,7 @@ class PagesController < ApplicationController
   def destroy
     @page = current_user.pages.where(id: params[:id]).first
     @page.destroy
-    flash[:success] = 'Page created'
+    flash[:success] = 'Page deleted'
     redirect_to pages_url
   end
 
