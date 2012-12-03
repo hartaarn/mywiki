@@ -1,0 +1,9 @@
+<% alert_type = ([:success, :notice].include?(key) ? 'success' : 'error') 
+        %>
+        <br>
+        <div class="
+        <%= "alert alert-#{alert_type}" %> 
+        ">
+          <a class="close" data-dismiss="alert">x</a>
+          <%= content_tag :span, value %>
+        </div>

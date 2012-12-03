@@ -1,0 +1,11 @@
+<%= form_for tag, remote: true do |f| %>
+    <div class="modal-body">
+      <%= f.text_field :tag %>
+      <%= hidden_field_tag :page_id, page.id %>
+    </div>
+ 
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary" type="submit">Add Tag</button>
+    </div>
+  <% end %>

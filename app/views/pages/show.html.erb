@@ -9,3 +9,18 @@
 
 <%= textilize(@page.current_body).html_safe %>
 
+<!-- Button to trigger modal -->
+<a href="#myModal" role="button" class="btn" data-toggle="modal">Add Tag</a>
+ 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Tags</h3>
+  </div>
+  
+  <div id="new-tag-form">
+    <%= render partial: 'tag_form', locals: {tag: @tag, page: @page} %>
+  </div>
+</div>
+

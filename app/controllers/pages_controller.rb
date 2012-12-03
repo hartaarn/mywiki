@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:index, :show]
   def index
-    @pages = current_user.pages
+    #@pages = current_user.pages
+    @pages = Page.all
   end
 
   def create
@@ -24,7 +25,9 @@ class PagesController < ApplicationController
   end
 
   def show
-    @page = current_user.pages.where(id: params[:id]).first
+    #@page = current_user.pages.where(id: params[:id]).first
+    @page = Page.where(id: params[:id]).first
+    @tag = Tag.new
   end
 
   def destroy

@@ -1,0 +1,8 @@
+<% if @tag.errors.present? %>
+
+  $('#new-tag-form').replaceWith("<%= escape_javascript(render partial: 'pages/tag_form', locals: {tag: @tag, page: @page}) %>")
+<% else %>
+  $('#new-tag-form').replaceWith("<%= escape_javascript(render partial: 'pages/tag_form', locals: {tag: Tag.new, page: @page}) %>")
+  $('#flash-messages').append("<%= flash_for_js(:success, 'Tag created successfully') %>")
+  $('#myModal').modal('hide')
+<% end %>
