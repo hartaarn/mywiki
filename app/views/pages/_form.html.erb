@@ -1,0 +1,11 @@
+<%= form_for @page do |f| %>
+  
+  Title:<br>
+  <%= f.text_field :title %><br />
+  
+  Wiki Content:
+  <%= f.textile_editor :current_body %><br />
+  <%= f.submit 'Save Wiki Page', class: 'btn btn-success' %>
+<% end %>
+
+<%= textile_editor_initialize %>

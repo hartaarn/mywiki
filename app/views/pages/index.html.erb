@@ -4,5 +4,7 @@
   <%= link_to page.title, page_url(page) %><br />
 <% end %>
 
-<br><br>
-<%= link_to 'New wiki page', new_page_url, class: 'btn btn-small btn-info' %>
+<% if can? :create, @page  %>
+  <br><br>
+  <%= link_to 'New wiki page', new_page_url, class: 'btn btn-small btn-info' %>
+<% end %>
