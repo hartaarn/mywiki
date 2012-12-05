@@ -1,5 +1,12 @@
 <h3>Wiki Pages</h3>
 
+<%= form_tag pages_url, :method => 'get' do %>
+	<p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil, class: 'btn btn-small btn-primary' %>
+  </p>
+<% end %>
+
 <%= paginate @pages %>
 <% @pages.each do |page| %>
   <%= link_to page.title, page_url(page) %><br />

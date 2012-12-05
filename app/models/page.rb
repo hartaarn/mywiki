@@ -6,7 +6,7 @@ class Page < ActiveRecord::Base
   has_many :contents
   has_many :tags, through: :tag_mappings
 
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: :true
 
   #after_initialize :init
 
@@ -19,12 +19,17 @@ class Page < ActiveRecord::Base
   	self.body ||= "
 h3. Setup Steps
 
-<enter some steps required to do this>
+<enter all set up steps undertaken>
 
+h3.  Testing Context
+
+Explore ...
+With ...
+So that ...
 
 h3. Test Strategies
 
-<thoughts completed to get this done>"
+<mind map of thoughts to help with exploratory testing>"
   
   end
 
@@ -32,7 +37,7 @@ h3. Test Strategies
     self.contents.build body: content
   end
 
-  def self.search search
+  def self.search_by_title search
   	if search
   		find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
   	else
