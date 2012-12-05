@@ -1,6 +1,6 @@
 class Page < ActiveRecord::Base
-  attr_accessible :title, :current_body
-  attr_accessor :body, :title
+  #attr_accessible :title
+  attr_accessor :body
 
   belongs_to :user, foreign_key: :created_by
   has_many :contents
