@@ -45,4 +45,13 @@ h3. Test Strategies
   	end
   end
 
+  def self.search search
+    if search
+      self.joins(:contents).select("DISTINCT(pages.id), pages.*").where("pages.title LIKE ? OR contents.body LIKE ?","%#{search}%","%#{search}%").order("created_at DESC")
+    else
+      #find(:all)
+      self.select("pages.*").order("created_at DESC")
+    end
+  end
+
 end

@@ -7,8 +7,8 @@ class PagesController < ApplicationController
     
     #@pages = Page.order("created_at").page(params[:page]).per(5)
 
-    kw          = params[:search]
-    @pages = Page.where("title LIKE ?","%#{kw}%").order("created_at DESC").page(params[:page]).per(5)
+    search_condition = params[:search]
+    @pages = Page.search(search_condition).page(params[:page]).per(5)
 
     #@pages = Page.search_by_title(params[:search]).page(params[:page]).per(5)
   end
