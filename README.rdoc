@@ -1,6 +1,5 @@
 
 
-
 == Getting Started
 
 Two things you'll need to do in order to start using the application is to set up user roles and assign an admin role to a user (if you need to).
@@ -9,22 +8,22 @@ Creating roles:
 
 * open rails console:
 
-  rails c
+    rails c
 
 * create roles:
 
-  r = Role.new
-  r.name = "Admin"
-  r.save
-  r = Role.new
-  r.name = "Member"
-  r.save
+    r = Role.new
+    r.name = "Admin"
+    r.save
+    r = Role.new
+    r.name = "Member"
+    r.save
 
 * set admin role:
 
-  u = User.first
-  u.role_ids = [1]
-  u.save
+    u = User.first
+    u.role_ids = [1]
+    u.save
 
 
 
