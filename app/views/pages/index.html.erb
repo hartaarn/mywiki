@@ -1,5 +1,6 @@
 <h3>Wiki Pages</h3>
 
+<%= paginate @pages %>
 <% @pages.each do |page| %>
   <%= link_to page.title, page_url(page) %><br />
 <% end %>

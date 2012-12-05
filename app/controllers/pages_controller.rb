@@ -2,7 +2,9 @@ class PagesController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
   def index
     #@pages = current_user.pages
-    @pages = Page.all
+    #@pages = Page.all
+    @pages = Page.order("created_at").page(params[:page]).per(5)
+    #@pages = @pages.search(params[:search])
   end
 
   def create
