@@ -32,7 +32,7 @@ class PagesController < ApplicationController
 
     if @page.save
       flash[:success] = 'Page updated'
-      redirect_to pages_url
+      redirect_to @page
     else
       flash[:error] = 'Please correct the errors below'
       render :new

@@ -3,11 +3,13 @@
   <% if can? :delete, @page %>
 	 <%= link_to 'Delete', page_url(@page), confirm: "Are you sure you want to delete this page?", method: :delete, class: 'btn btn-mini btn-danger' %> |
   <% end %>
-  <%= link_to 'Edit', edit_page_url(@page) %> |
-	<%= link_to 'Home', pages_url, class: 'btn btn-mini' %>
+  <% if can? :edit, @page %>
+  	<%= link_to 'Edit', edit_page_url(@page), class: 'btn btn-small' %> |
+  <% end %>
+	<%= link_to 'Home', pages_url %>
 </div>
 
-<h3><%= @page.title %></h3>
+<h2><%= @page.title %></h2>
 <hr>
 
 <%= textilize(@page.current_body).html_safe %>
