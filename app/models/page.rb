@@ -1,4 +1,5 @@
 class Page < ActiveRecord::Base
+  include ActionView::Helpers::UrlHelper
   #attr_accessible :title
   attr_accessor :body
 
@@ -9,6 +10,7 @@ class Page < ActiveRecord::Base
   validates :title, presence: true, uniqueness: :true
 
   #after_initialize :init
+  
 
   def current_body
     contents.order('created_at  desc').limit(1).first.body
@@ -37,12 +39,12 @@ h3. Test Strategies
     self.contents.build body: content
   end
 
-  def self.search_by_title search
+  def self.search_match_title_path search
+
   	if search
-  		find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
-  	else
-  		find(:all)
+  		page_id = find(:all, :conditions => ['title = ?', "#{search}"]).first.id
   	end
+    "pages/#{page_id}"
   end
 
   def self.search search
@@ -53,5 +55,7 @@ h3. Test Strategies
       self.select("pages.*").order("created_at DESC")
     end
   end
+
+  
 
 end
