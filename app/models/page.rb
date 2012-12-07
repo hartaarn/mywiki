@@ -44,22 +44,13 @@ h3. Test Strategies
   def self.page_url_with_title search
 
   	if search
-  		found = find(:all, :conditions => ['title = ?', "#{search}"]).first
+  		found = find(:all, :conditions => ['LOWER(title) = ?', "#{search}".downcase]).first
   	end
     
 		host = Rails.application.config.action_mailer.default_url_options[:host]
 
     found ? "<a href=\"http://#{host}/pages/#{found.id}\">#{search}</a>" : '[[' + search + ']]'
 
-  end
-
-  def self.search search
-    if search
-      self.joins(:contents).select("DISTINCT(pages.id), pages.*").where("pages.title LIKE ? OR contents.body LIKE ?","%#{search}%","%#{search}%").order("created_at DESC")
-    else
-      #find(:all)
-      self.select("pages.*").order("created_at DESC")
-    end
   end
 
   def self.wiki_tags_to_urls s
@@ -76,6 +67,15 @@ h3. Test Strategies
 	def self.textile2html s
 	  textilize( wiki_tags_to_urls(s) ).html_safe
 	end
+
+  def self.search search
+    if search
+      self.joins(:contents).select("DISTINCT(pages.id), pages.*").where("pages.title LIKE ? OR contents.body LIKE ?","%#{search}%","%#{search}%").order("created_at DESC")
+    else
+      #find(:all)
+      self.select("pages.*").order("created_at DESC")
+    end
+  end
  
 
 end
