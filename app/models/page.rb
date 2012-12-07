@@ -16,6 +16,16 @@ class Page < ActiveRecord::Base
     contents.order('created_at  desc').limit(1).first.body
   end
 
+  def revision_history revision = nil, limit = 5
+    limit < 0 ? 0 : limit
+    if revision
+      limit = 1
+      contents.find(:all, :conditions => ['id = ?', "#{revision.id}"], :order => ['created_at'], :limit => limit).first
+    else
+      contents.order("created_at desc").limit(limit)
+    end
+  end
+
   def initialize params={}
     super
   	self.body ||= "
@@ -75,6 +85,10 @@ h3. Test Strategies
       #find(:all)
       self.select("pages.*").order("created_at DESC")
     end
+  end
+
+  def set_version revision
+    content = self.revision_history(revision, 1)
   end
  
 
