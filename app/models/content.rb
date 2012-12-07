@@ -3,7 +3,7 @@ class Content < ActiveRecord::Base
 
   belongs_to :page
 
-  before_save :create_wikilinks
+  #before_save :create_wikilinks
 
 
   def create_wikilinks

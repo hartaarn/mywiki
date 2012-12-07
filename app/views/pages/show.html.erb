@@ -12,7 +12,7 @@
 <h2><%= @page.title %></h2>
 <hr>
 
-<%= textilize(@page.current_body).html_safe %>
+<%= Page.textile2html(@page.current_body) %>
 
 <!-- Button to trigger modal -->
 <% if can? :create, @tag  %>

@@ -57,6 +57,8 @@ class PagesController < ApplicationController
     #@page = Page.where(id: params[:id]).first
     @page = Page.find(params[:id])
     @tag = Tag.new
+
+    #Page.textile2html @page.current_body
   end
 
   def edit

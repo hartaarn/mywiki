@@ -1,5 +1,5 @@
-class Page < ActiveRecord::Base
-  include ActionView::Helpers::UrlHelper
+class Page < ActiveRecord::Base  
+	include Rails.application.routes.url_helpers
   #attr_accessible :title
   attr_accessor :body
 
@@ -19,6 +19,8 @@ class Page < ActiveRecord::Base
   def initialize params={}
     super
   	self.body ||= "
+A wikilink can be created using [[match title]]
+
 h3. Setup Steps
 
 <enter all set up steps undertaken>
@@ -42,9 +44,13 @@ h3. Test Strategies
   def self.search_match_title_path search
 
   	if search
-  		page_id = find(:all, :conditions => ['title = ?', "#{search}"]).first.id
+  		found = find(:all, :conditions => ['title = ?', "#{search}"]).first
   	end
-    "pages/#{page_id}"
+    
+		host = Rails.application.config.action_mailer.default_url_options[:host]
+
+    found ? "<a href=\"http://#{host}/pages/#{found.id}\">#{search}</a>" : '[[' + search + ']]'
+
   end
 
   def self.search search
@@ -56,6 +62,20 @@ h3. Test Strategies
     end
   end
 
-  
+  def self.wiki_tags_to_urls s
+  	pattern = Regexp.new(/\[\[([^"\r\n]*?)\]\]/)
+    s = s.gsub(pattern) {|match| search_match_title_path($1) }
+    return s
+  end
+
+  def self.urls2links s
+	  s = s.gsub(/([^:])((https?|ftp)\:\/\/[^\s)'"]+[^.,)\s])(. |, |[\s]|\) | )/, '\1<a href="\2" target="_blank">\2</a>\4')
+  	return s
+	end
+
+	def self.textile2html s
+	  textilize( wiki_tags_to_urls(s) ).html_safe
+	end
+ 
 
 end
