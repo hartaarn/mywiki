@@ -41,7 +41,7 @@ h3. Test Strategies
     self.contents.build body: content
   end
 
-  def self.search_match_title_path search
+  def self.page_url_with_title search
 
   	if search
   		found = find(:all, :conditions => ['title = ?', "#{search}"]).first
@@ -64,7 +64,7 @@ h3. Test Strategies
 
   def self.wiki_tags_to_urls s
   	pattern = Regexp.new(/\[\[([^"\r\n]*?)\]\]/)
-    s = s.gsub(pattern) {|match| search_match_title_path($1) }
+    s = s.gsub(pattern) {|match| page_url_with_title($1) }
     return s
   end
 
