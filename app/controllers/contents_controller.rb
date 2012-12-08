@@ -16,6 +16,6 @@ class ContentsController < ApplicationController
     @content.destroy
     
     flash[:success] = 'Revision deleted'
-    redirect_to pages_url(@page)
+    redirect_to @page
   end
 end

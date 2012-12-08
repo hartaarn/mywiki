@@ -20,10 +20,11 @@ class Page < ActiveRecord::Base
     limit < 0 ? 0 : limit
     if revision
       limit = 1
-      contents.find(:all, :conditions => ['id = ?', "#{revision.id}"], :order => ['created_at'], :limit => limit).first
+      history = contents.find(:all, :conditions => ['id = ?', "#{revision.id}"], :order => ['created_at'], :limit => limit).first
     else
-      contents.order("created_at desc").limit(limit)
+      history = contents.order("created_at desc").limit(limit)
     end
+    history.count <= 1 ? nil : history
   end
 
   def initialize params={}
