@@ -22,7 +22,7 @@ class PagesController < ApplicationController
     if @page.save
       @page.contents.create! body: params[:page][:body]
       flash[:success] = 'Page created'
-      redirect_to pages_url
+      redirect_to @page
     else
       flash[:error] = 'Please correct the errors below'
       render :new
