@@ -1,7 +1,9 @@
 Mywiki::Application.routes.draw do
   devise_for :users
 
-  resources :pages
+  resources :pages do
+    resources :contents
+  end
   resources :tags
 
   root :to => 'pages#index'

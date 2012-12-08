@@ -35,6 +35,6 @@
 <% @historic_page = @page  %>
 <% @page.revision_history.each do |revision| %>
   <% @historic_page.set_version(revision) %>
-  <%= link_to "\##{revision.id}.  #{revision.created_at.to_formatted_s(:long)}", page_url(@historic_page) %><br />
+  <%= link_to "\##{revision.id}.  #{revision.created_at.to_formatted_s(:long)}", page_content_url(@page, revision) %><br />
 <% end %>
 
