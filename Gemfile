@@ -54,3 +54,5 @@ gem 'jquery-ui-rails'
 gem "cancan"
 
 gem 'kaminari'
+
+gem 'pg'
