@@ -20,9 +20,17 @@ class PagesController < ApplicationController
     @page.created_by = current_user.id
 
     if @page.save
-      @page.contents.create! body: params[:page][:body]
-      flash[:success] = 'Page created'
-      redirect_to @page
+      @content = @page.contents.create! body: params[:page][:body]
+      @content.created_by = current_user.id
+      
+      if @content.save
+        flash[:success] = 'Page created'
+        redirect_to @page
+      else
+        flash[:error] = 'Unable to save page body'
+        redirect_to @page
+      end
+
     else
       flash[:error] = 'Please correct the errors below'
       render :new
