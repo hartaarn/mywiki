@@ -39,7 +39,7 @@
 		<strong>Revision History:</strong><br/><br/>
 		<% @revisions.each_with_index do |revision, i| %>
 			<% if i > 0 %>
-		  	<%= link_to "#{revision.created_at.to_formatted_s(:long)}", page_content_url(@page, revision) %><br />
+		  	<%= link_to "#{revision.created_at.to_formatted_s(:long)} #{revision.author}", page_content_url(@page, revision) %><br />
 		  <% end %>
 		<% end %>
 	</div>

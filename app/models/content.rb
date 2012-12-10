@@ -3,5 +3,7 @@ class Content < ActiveRecord::Base
 
   belongs_to :page
 
-  
+  def author
+  end
+
 end
